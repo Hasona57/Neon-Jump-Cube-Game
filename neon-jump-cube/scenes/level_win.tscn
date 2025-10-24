@@ -1,0 +1,171 @@
+[gd_scene load_steps=13 format=3 uid="uid://dh1jgtr48ivo5"]
+
+[ext_resource type="Script" uid="uid://j228dawahk2d" path="res://scripts/level_win.gd" id="1_4hm81"]
+[ext_resource type="FontFile" uid="uid://dv4xanc3p7ue2" path="res://Fonts/cyber-alert/Cyber Alert.otf" id="2_mtm3b"]
+[ext_resource type="FontFile" uid="uid://da6ss0rxv2k06" path="res://Fonts/elektrix-wizards-font/MgfElektrixWizardsPersonalUse-KVR9l.otf" id="3_3ow0s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b3ou"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtm3b"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ow0s"]
+bg_color = Color(0.5014065, 0.50140655, 0.50140643, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iojlr"]
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbmy1"]
+bg_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pvy2"]
+bg_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0uv7"]
+bg_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mste"]
+bg_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44705883)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.56)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmo0e"]
+
+[node name="LevelWin" type="Node2D"]
+script = ExtResource("1_4hm81")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinPanel" type="ColorRect" parent="CanvasLayer"]
+offset_left = -788.0
+offset_top = -417.0
+offset_right = 1953.0
+offset_bottom = 985.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/WinPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -135.0
+offset_right = 488.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_mtm3b")
+theme_override_font_sizes/font_size = 80
+text = "Congratualtion
+YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = 52.0
+offset_right = 234.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Button2" type="Button" parent="CanvasLayer/WinPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3ow0s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_2b3ou")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_mtm3b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ow0s")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_iojlr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dbmy1")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_8pvy2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_v0uv7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_8mste")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tmo0e")
+text = "Main Menu"
+
+[node name="Button3" type="Button" parent="CanvasLayer/WinPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3ow0s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_2b3ou")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_mtm3b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ow0s")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_iojlr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dbmy1")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_8pvy2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_v0uv7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_8mste")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tmo0e")
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/WinPanel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinPanel/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

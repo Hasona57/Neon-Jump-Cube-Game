@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://dg46vaprw2oon"]
+
+[ext_resource type="Texture2D" uid="uid://dwgtyqefjfduo" path="res://images/Free Industrial Zone Tileset/4 Animated objects/Hammer.png" id="1_1ub1s"]
+
+[sub_resource type="GDScript" id="GDScript_1ub1s"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+	
+
+	if direction:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		animated_sprite.play(\"Idle\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26hml"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjij8"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31fx8"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smc26"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fgac"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnr7x"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmec7"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on80k"]
+atlas = ExtResource("1_1ub1s")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_su7tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26hml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjij8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31fx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smc26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fgac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnr7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmec7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on80k")
+}],
+"loop": true,
+"name": &"Hammer",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26hml"]
+size = Vector2(30, 52)
+
+[node name="Grinder" type="Node2D"]
+script = SubResource("GDScript_1ub1s")
+
+[node name="Hammer" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_su7tg")
+animation = &"Hammer"
+frame_progress = 0.69803715
+
+[node name="HitArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_26hml")
+
+[node name="Tween" type="Node" parent="."]
+
+[node name="PauseTimer" type="Timer" parent="."]
