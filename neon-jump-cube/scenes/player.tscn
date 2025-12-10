@@ -1,11 +1,17 @@
-[gd_scene load_steps=68 format=3 uid="uid://dowpdpg4suahd"]
+[gd_scene load_steps=75 format=3 uid="uid://dowpdpg4suahd"]
 
 [ext_resource type="Texture2D" uid="uid://bh7mx7bckrfdu" path="res://images/Character/Idle animation.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cg6p7phtw5upi" path="res://scripts/character_body_2d.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bi1s5pqvhrbdf" path="res://images/Character/Death animation resized.png" id="2_2hs0m"]
+[ext_resource type="FontFile" uid="uid://dv4xanc3p7ue2" path="res://Fonts/cyber-alert/Cyber Alert.otf" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://dkhtdnlq6grv" path="res://images/Character/Falling animation resized.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://c48wirglcpesy" path="res://images/Character/Meelee attack animation resized.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://blhtxfkclyaci" path="res://images/Character/Running animation larger.png" id="5_dw050"]
+[ext_resource type="Script" uid="uid://bhd1q5iog4w" path="res://scenes/label.gd" id="7_fjrip"]
+[ext_resource type="Texture2D" uid="uid://dj48rb5tsy58f" path="res://images/health/health3.png" id="9_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://b60uo0viag7n3" path="res://images/health/health2.png" id="10_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://dd3isq8438q0g" path="res://images/health/health.png" id="11_jej6c"]
+[ext_resource type="FontFile" uid="uid://cjnpfoucffcpt" path="res://Fonts/Orbitron/Orbitron-VariableFont_wght.ttf" id="12_3v2ag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(30, 76)
@@ -318,7 +324,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_634y6")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 5.0
 }, {
@@ -451,6 +457,9 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v2ag"]
+size = Vector2(13, 76)
+
 [node name="Player" type="Node2D"]
 position = Vector2(59, 62)
 
@@ -460,6 +469,11 @@ script = ExtResource("1_sweqy")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -3.8146973e-06)
 scale = Vector2(0.99999994, 0.99999994)
+limit_left = 0
+limit_top = 0
+limit_right = 2720
+limit_bottom = 780
+limit_smoothed = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0.80000305, -2)
@@ -470,7 +484,60 @@ texture_filter = 1
 position = Vector2(-0.19998169, -4.9999847)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pylmc")
-animation = &"Meelee attack animation"
+animation = &"Death"
 autoplay = "Idle"
-frame_progress = 0.7856321
 offset = Vector2(2, 40)
+
+[node name="AttackArea" type="Area2D" parent="CharacterBody2D"]
+monitoring = false
+monitorable = false
+
+[node name="AttackCollision" type="CollisionShape2D" parent="CharacterBody2D/AttackArea"]
+position = Vector2(22.5, -2)
+shape = SubResource("RectangleShape2D_3v2ag")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1000.0
+offset_top = 40.0
+offset_right = 1040.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_smehm")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("7_fjrip")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 382.0
+offset_top = 48.0
+offset_right = 455.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+alignment = 1
+
+[node name="Health" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_d2wvv")
+
+[node name="Health2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_3v2ag")
+
+[node name="Health3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_jej6c")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 282.0
+offset_top = 26.0
+offset_right = 694.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_3v2ag")
+text = "Health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_shape_entered" from="CharacterBody2D/AttackArea" to="CharacterBody2D" method="_on_attack_area_area_shape_entered"]
+[connection signal="body_entered" from="CharacterBody2D/AttackArea" to="CharacterBody2D" method="_on_attack_area_body_entered"]

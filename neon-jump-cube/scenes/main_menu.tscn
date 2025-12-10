@@ -156,6 +156,23 @@ theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_jk1qb")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5dd4i")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_lgwnu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_flqon")
+text = "Levels"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rtw2f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_oa1go")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5dd4i")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_lgwnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_flqon")
 text = "Credits"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
@@ -196,4 +213,5 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_Levels_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_Exit_pressed"]
