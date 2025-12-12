@@ -1,15 +1,19 @@
-[gd_scene load_steps=75 format=3 uid="uid://dowpdpg4suahd"]
+[gd_scene load_steps=79 format=3 uid="uid://dowpdpg4suahd"]
 
 [ext_resource type="Texture2D" uid="uid://bh7mx7bckrfdu" path="res://images/Character/Idle animation.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cg6p7phtw5upi" path="res://scripts/character_body_2d.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bi1s5pqvhrbdf" path="res://images/Character/Death animation resized.png" id="2_2hs0m"]
+[ext_resource type="Script" uid="uid://cmsodagcojtyk" path="res://scripts/camera_controller.gd" id="2_jej6c"]
 [ext_resource type="FontFile" uid="uid://dv4xanc3p7ue2" path="res://Fonts/cyber-alert/Cyber Alert.otf" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://dkhtdnlq6grv" path="res://images/Character/Falling animation resized.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://c48wirglcpesy" path="res://images/Character/Meelee attack animation resized.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://blhtxfkclyaci" path="res://images/Character/Running animation larger.png" id="5_dw050"]
 [ext_resource type="Script" uid="uid://bhd1q5iog4w" path="res://scenes/label.gd" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://c5rmjcsmjs84t" path="res://images/brackeys_platformer_assets/brackeys_platformer_assets/sounds/hurt.wav" id="8_a8ls1"]
 [ext_resource type="Texture2D" uid="uid://dj48rb5tsy58f" path="res://images/health/health3.png" id="9_d2wvv"]
+[ext_resource type="AudioStream" uid="uid://d4lceikggtg0k" path="res://images/brackeys_platformer_assets/brackeys_platformer_assets/sounds/jump.wav" id="9_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://b60uo0viag7n3" path="res://images/health/health2.png" id="10_3v2ag"]
+[ext_resource type="AudioStream" uid="uid://dr78p0ayfvma2" path="res://images/brackeys_platformer_assets/brackeys_platformer_assets/sounds/explosion.wav" id="10_fulsm"]
 [ext_resource type="Texture2D" uid="uid://dd3isq8438q0g" path="res://images/health/health.png" id="11_jej6c"]
 [ext_resource type="FontFile" uid="uid://cjnpfoucffcpt" path="res://Fonts/Orbitron/Orbitron-VariableFont_wght.ttf" id="12_3v2ag"]
 
@@ -469,13 +473,17 @@ script = ExtResource("1_sweqy")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -3.8146973e-06)
 scale = Vector2(0.99999994, 0.99999994)
+zoom = Vector2(1.8, 1.8)
 limit_left = 0
 limit_top = 0
 limit_right = 2720
 limit_bottom = 780
 limit_smoothed = true
+script = ExtResource("2_jej6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 4
 position = Vector2(0.80000305, -2)
 shape = SubResource("RectangleShape2D_onrkg")
 
@@ -484,8 +492,10 @@ texture_filter = 1
 position = Vector2(-0.19998169, -4.9999847)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pylmc")
-animation = &"Death"
+animation = &"Runing"
 autoplay = "Idle"
+frame = 6
+frame_progress = 0.08725303
 offset = Vector2(2, 40)
 
 [node name="AttackArea" type="Area2D" parent="CharacterBody2D"]
@@ -493,8 +503,19 @@ monitoring = false
 monitorable = false
 
 [node name="AttackCollision" type="CollisionShape2D" parent="CharacterBody2D/AttackArea"]
-position = Vector2(22.5, -2)
+light_mask = 2
+visibility_layer = 4
+position = Vector2(24, -2)
 shape = SubResource("RectangleShape2D_3v2ag")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("8_a8ls1")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("9_qfm1y")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("10_fulsm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -539,5 +560,26 @@ text = "Health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Health hint" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 283.0
+offset_top = 97.0
+offset_right = 695.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_3v2ag")
+text = "Press H to heal (-10$)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageVignette" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)
+
 [connection signal="area_shape_entered" from="CharacterBody2D/AttackArea" to="CharacterBody2D" method="_on_attack_area_area_shape_entered"]
-[connection signal="body_entered" from="CharacterBody2D/AttackArea" to="CharacterBody2D" method="_on_attack_area_body_entered"]

@@ -1,8 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dh1jgtr48ivo5"]
+[gd_scene load_steps=15 format=3 uid="uid://dh1jgtr48ivo5"]
 
 [ext_resource type="Script" uid="uid://j228dawahk2d" path="res://scripts/level_win.gd" id="1_4hm81"]
+[ext_resource type="Texture2D" uid="uid://y4a2t5rh5k47" path="res://images/Free Industrial Zone Tileset/2 Background/Background.png" id="2_3ow0s"]
 [ext_resource type="FontFile" uid="uid://dv4xanc3p7ue2" path="res://Fonts/cyber-alert/Cyber Alert.otf" id="2_mtm3b"]
 [ext_resource type="FontFile" uid="uid://da6ss0rxv2k06" path="res://Fonts/elektrix-wizards-font/MgfElektrixWizardsPersonalUse-KVR9l.otf" id="3_3ow0s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iojlr"]
+texture = ExtResource("2_3ow0s")
+modulate_color = Color(1, 1, 1, 0.41960785)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b3ou"]
 bg_color = Color(1, 1, 1, 1)
@@ -91,25 +96,21 @@ script = ExtResource("1_4hm81")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="WinPanel" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 1158.0
+offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_iojlr")
 
-[node name="Label" type="Label" parent="CanvasLayer/WinPanel"]
-layout_mode = 1
+[node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -488.0
-offset_top = -135.0
+offset_top = -153.5
 offset_right = 488.0
-offset_bottom = -25.0
+offset_bottom = -6.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_mtm3b")
@@ -119,8 +120,7 @@ YOU WIN!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinPanel"]
-layout_mode = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -134,7 +134,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Button2" type="Button" parent="CanvasLayer/WinPanel/VBoxContainer"]
+[node name="Button4" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3ow0s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_2b3ou")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_mtm3b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ow0s")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_iojlr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dbmy1")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_8pvy2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_v0uv7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_8mste")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tmo0e")
+text = "Next Level"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -151,7 +168,7 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_8mste")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tmo0e")
 text = "Main Menu"
 
-[node name="Button3" type="Button" parent="CanvasLayer/WinPanel/VBoxContainer"]
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -168,5 +185,6 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_8mste")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tmo0e")
 text = "Exit"
 
-[connection signal="pressed" from="CanvasLayer/WinPanel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/WinPanel/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

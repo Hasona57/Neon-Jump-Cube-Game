@@ -3,4 +3,5 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	GameState.add_point()
+	GameState.coins_this_run += 1
 	animation_player.play("PickUp Animation")

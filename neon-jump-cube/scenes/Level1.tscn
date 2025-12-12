@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=4 uid="uid://dnnka5th1gldj"]
+[gd_scene load_steps=243 format=4 uid="uid://dnnka5th1gldj"]
 
 [ext_resource type="PackedScene" uid="uid://dowpdpg4suahd" path="res://scenes/player.tscn" id="1_6ovph"]
 [ext_resource type="Texture2D" uid="uid://y4a2t5rh5k47" path="res://images/Free Industrial Zone Tileset/2 Background/Background.png" id="1_80vfv"]
@@ -122,6 +122,8 @@
 [ext_resource type="PackedScene" uid="uid://otv48pmrk5c0" path="res://scenes/kill_zone.tscn" id="119_pgu61"]
 [ext_resource type="PackedScene" uid="uid://drsw57i3uei4f" path="res://scenes/slime.tscn" id="120_uclox"]
 [ext_resource type="FontFile" uid="uid://cjnpfoucffcpt" path="res://Fonts/Orbitron/Orbitron-VariableFont_wght.ttf" id="122_yx54i"]
+[ext_resource type="PackedScene" uid="uid://cwdaw4tc4dqxg" path="res://scenes/moving_platform.tscn" id="123_maljy"]
+[ext_resource type="PackedScene" uid="uid://b11kbkrjlv6cd" path="res://scenes/pause_menu.tscn" id="124_ynsmx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smm8m"]
 texture = ExtResource("2_u538v")
@@ -1516,5 +1518,10 @@ theme_override_fonts/font = ExtResource("122_yx54i")
 text = "Make sure to collect Money"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MovingPlatform" parent="." instance=ExtResource("123_maljy")]
+position = Vector2(735, 753)
+
+[node name="PauseMenu" parent="." instance=ExtResource("124_ynsmx")]
 
 [connection signal="body_entered" from="GoalArea" to="GameManager" method="_on_goal_area_body_entered"]
