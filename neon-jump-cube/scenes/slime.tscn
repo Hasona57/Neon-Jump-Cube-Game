@@ -79,10 +79,7 @@ script = ExtResource("1_pjw23")
 texture_filter = 1
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_v5wyi")
-animation = &"death"
 autoplay = "default"
-frame = 2
-frame_progress = 1.0
 
 [node name="DamageZone" type="Area2D" parent="."]
 script = ExtResource("2_p2gj0")

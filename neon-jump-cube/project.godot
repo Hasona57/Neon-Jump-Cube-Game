@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="NeonJumpCube"
-run/main_scene="uid://wtw6jglarxdd"
+run/main_scene="uid://comb5ry4sx18o"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://images/icon.svg"
 
